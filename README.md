@@ -1,14 +1,12 @@
 # Delete Key for Gmail™
-This extension adds a keyboard shortcut for deleting a single email in Gmail. It performs the same action as clicking the menu button on a message and selecting 'Delete this message.' This extension is especially helpful for deleting single emails in a thread, since Gmail offers no keyboard shortcut for that action.
 
-The default shortcut is `SHIFT + 5`, but it can be changed from the options page.
+Google's Gmail™ has allowed a keyboard shortcut to delete entire message threads (#) for a long time, but it has never made it possible to use a keyboard shortcut to delete individual emails in threads.
 
----------------------------------------------------------
+Until now.
 
-__New in Delete Key for Gmail™ 1.0:__
+Enter Delete Key for Gmail™. Press `Shift + 5` (`%` symbol), and voila - only the current individual message is deleted. It performs the same action as clicking the menu button on a message and selecting "Delete this message."
 
-* Initial release
+The best part is you can change this shortcut to anything you want from the extension's Options page.
 
----------------------------------------------------------
 
-Gmail is a trademark of Google LLC. Use of this trademark is subject to Google Permissions. This extension and its developers are in no way associated with Google LLC.
+Gmail™ is a trademark of Google LLC. Use of this trademark is subject to Google Permissions. This extension and its developers are in no way associated with Google LLC.
