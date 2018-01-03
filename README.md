@@ -10,6 +10,14 @@ Enter Delete Key for Gmail™. Press `Shift + 5` (`%` symbol), and voila - only 
 
 The best part is you can change this shortcut to anything you want from the extension's Options page.
 
+## Installation
+
+Chrome: https://chrome.google.com/webstore/detail/delete-key-for-gmail/alpohlaboohebmblbmanccbepncahbda.
+
+Firefox: TBD.
+
+Opera: TBD.
+
 ## Changelog
 
 See [Changelog](CHANGELOG.md).
