@@ -5,9 +5,9 @@ The default shortcut is `SHIFT + 5`, but it can be changed from the options page
 
 ---------------------------------------------------------
 
-__New in Delete Key for Gmail™ 1.0:__
+__New in Delete Key for Gmail™ 1.1:__
 
-* Initial release
+* Fixed bug where delete action would fire if the user was typing in a text field
 
 ---------------------------------------------------------
 
