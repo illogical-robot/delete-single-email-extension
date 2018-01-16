@@ -26,7 +26,15 @@ function deleteMail() {
         console.log("Error finding focused element: " + err)
     }
     // Simulate click on dropdown menu
-    triggerMostButtons(document.querySelector('div[data-tooltip="More"]'))
+    try {
+        // Try to find the dropdown menu button for the selected email in a thread
+        triggerMostButtons(document.querySelector('div[tabindex="0"] div[data-tooltip="More"]'))
+    } catch (err) {
+        // Click the last dropdown menu on the page if the above check doesn't work
+        var buttons = document.querySelectorAll('div[data-tooltip="More"]')
+        var lastButton = buttons[buttons.length - 1]
+        triggerMostButtons(lastButton)
+    }
     // Simulate click on 'Delete this message' menu item
     var deleteMenuItem = document.querySelector('div[class="b7 J-M"] #tm')
     // This needs to be triggered twice for some reason
