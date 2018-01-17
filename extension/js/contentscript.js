@@ -18,6 +18,10 @@ function deleteMail() {
     // Find out what element is currently in focus
     try {
         var focusedElement = document.activeElement;
+        if (focusedElement.getAttribute('contenteditable') || focusedElement.tagName == "INPUT") {
+            // Don't delete the email if the user is using an input element or an editable element (aka typing an email or doing a search)
+            return
+        }
     } catch (err) {
         console.log("Error finding focused element: " + err)
     }
