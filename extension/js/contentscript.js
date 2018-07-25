@@ -42,8 +42,11 @@ function deleteMail() {
 
 // Set listener for shortcut
 chrome.storage.sync.get({
-    data: ["shiftKey", "53"]
+    data: ["shiftKey", "53"],
+    secondary: ["shiftKey", "54"],
+    secondaryEnabled: false
 }, function(items) {
+    console.log("Primary delete shortcut: " + items.data[0] + " + " + items.data[1]);
     document.addEventListener('keydown', function doc_keyUp(e) {
         if ((items.data[0] == "noKey") && (e.keyCode == items.data[1])) {
             deleteMail();
@@ -51,4 +54,17 @@ chrome.storage.sync.get({
             deleteMail();
         }
     });
+    // Enable secondary shortcut if switched on in settings
+    if (items.secondaryEnabled) {
+        console.log("Secondary delete shortcut: " + items.secondary[0] + " + " + items.secondary[1]);
+        document.addEventListener('keydown', function doc_keyUp(e) {
+            if ((items.secondary[0] == "noKey") && (e.keyCode == items.secondary[1])) {
+                deleteMail();
+            } else if ((e[items.secondary[0]]) && (e.keyCode == items.secondary[1])) {
+                deleteMail();
+            }
+        });
+    } else {
+        console.log("Secondary delete shortcut not enabled.")
+    }
 });

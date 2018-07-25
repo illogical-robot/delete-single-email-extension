@@ -19,9 +19,9 @@
         </style>
     </head>
     <body>
-        <p><b>Keyboard shortcut used for deleting email:</b></p>
+        <p><b>Primary shortcut used for deleting email:</b></p>
         <p>
-            <select id="first-key">
+            <select id="primary-first">
                 <option value="noKey">No modifier key</option>
                 <option value="ctrlKey">Control Key</option>
                 <option value="shiftKey">Shift Key</option>
@@ -29,7 +29,19 @@
                 <option value="metaKey">⌘ Command Key / Windows Key</option>
             </select>
             <span class="plus">+</span>
-            <input type="text" id="second-key" placeholder="Click here and press a key" spellcheck="false">
+            <input type="text" id="primary-second" class="keyfield" placeholder="Click here and press a key" spellcheck="false">
+        </p>
+        <p><input type="checkbox" name="enable-secondary" id="enable-secondary"> <label for="enable-secondary">Enable secondary shortcut</label></p>
+        <p class="secondary-field">
+            <select id="secondary-first">
+                <option value="noKey">No modifier key</option>
+                <option value="ctrlKey">Control Key</option>
+                <option value="shiftKey">Shift Key</option>
+                <option value="altKey">Alt Key</option>
+                <option value="metaKey">⌘ Command Key / Windows Key</option>
+            </select>
+            <span class="plus">+</span>
+            <input type="text" id="secondary-second" class="keyfield" placeholder="Click here and press a key" spellcheck="false">
         </p>
         <p><b>Note:</b> Make sure to avoid using a <a href="https://support.google.com/mail/answer/6594" target="_blank">keyboard shortcut already used by Gmail</a> or your operating system. You must refresh Gmail (or open a new tab) for settings to apply.</p>
         <p><button id="settings-save">Save</button><button id="settings-reset">Reset to default</button></p>
