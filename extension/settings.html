@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             input, select {
-                text-align: center;
+                text-align: center !important;
                 width: 45%;
             }
             .plus {
@@ -16,24 +16,60 @@
             button {
                 margin-right: 10px !important;
             }
+            footer {
+                margin-top: 20px;
+                padding-top: 10px;
+                border-top: 1px solid #000;
+            }
+            /* Full-tab styles for Opera  */
+            .opera main {
+                width: 450px;
+                margin: 10% auto 0 auto;
+                border: 1px solid #000;
+                border-radius: 5px;
+                padding: 20px;
+            }
+            .opera footer {
+                width: 490px;
+                margin: 10px auto 0 auto;
+                padding-top: none;
+                border-top: none;
+            }
+            /* End styles for full tab */
         </style>
     </head>
     <body>
-        <p><b>Keyboard shortcut used for deleting email:</b></p>
-        <p>
-            <select id="first-key">
-                <option value="noKey">No modifier key</option>
-                <option value="ctrlKey">Control Key</option>
-                <option value="shiftKey">Shift Key</option>
-                <option value="altKey">Alt Key</option>
-                <option value="metaKey">⌘ Command Key / Windows Key</option>
-            </select>
-            <span class="plus">+</span>
-            <input type="text" id="second-key" placeholder="Click here and press a key" spellcheck="false">
-        </p>
-        <p><b>Note:</b> Make sure to avoid using a <a href="https://support.google.com/mail/answer/6594" target="_blank">keyboard shortcut already used by Gmail</a> or your operating system. You must refresh Gmail (or open a new tab) for settings to apply.</p>
-        <p><button id="settings-save">Save</button><button id="settings-reset">Reset to default</button></p>
-        <p><i>Delete Key for Gmail™ is open-source under the GPLv3 license. You can find the source code <a href="https://github.com/android-police/delete-single-email-extension" target="_blank">here</a>.</i></p>
+        <main>
+            <p><b>Primary shortcut used for deleting email:</b></p>
+            <p>
+                <select id="primary-first">
+                    <option value="noKey">No modifier key</option>
+                    <option value="ctrlKey">Control Key</option>
+                    <option value="shiftKey">Shift Key</option>
+                    <option value="altKey">Alt Key</option>
+                    <option value="metaKey">⌘ Command Key / Windows Key</option>
+                </select>
+                <span class="plus">+</span>
+                <input type="text" id="primary-second" class="keyfield" placeholder="Click here and press a key" spellcheck="false">
+            </p>
+            <p><input type="checkbox" name="enable-secondary" id="enable-secondary"> <label for="enable-secondary">Enable secondary shortcut</label></p>
+            <p class="secondary-field">
+                <select id="secondary-first">
+                    <option value="noKey">No modifier key</option>
+                    <option value="ctrlKey">Control Key</option>
+                    <option value="shiftKey">Shift Key</option>
+                    <option value="altKey">Alt Key</option>
+                    <option value="metaKey">⌘ Command Key / Windows Key</option>
+                </select>
+                <span class="plus">+</span>
+                <input type="text" id="secondary-second" class="keyfield" placeholder="Click here and press a key" spellcheck="false">
+            </p>
+            <p><b>Note:</b> Don't use a <a href="https://support.google.com/mail/answer/6594" target="_blank">keyboard shortcut already taken by Gmail</a> or your operating system. You must refresh Gmail (or open a new tab) for settings to apply.</p>
+            <p><button id="settings-save">Save</button><button id="settings-reset">Reset to default</button></p>
+        </main>
+        <footer>
+            <div>Delete Key for Gmail™ is open-source under the GPLv3 license. You can find the source code <a href="https://github.com/android-police/delete-single-email-extension" target="_blank">here</a>.</div>
+        </footer>
         
         <script src="js/settings.js"></script>
     </body>

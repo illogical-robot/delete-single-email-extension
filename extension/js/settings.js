@@ -171,19 +171,28 @@ var keyCodes = {
     255 : "toggle touchpad"
 };
 
-// Interactivity for second key textbox
-document.querySelector("#second-key").onkeydown = function (e) {
-    if ( !e.metaKey ) {
-        e.preventDefault();
-    }
-    this.setAttribute('data-keycode', e.keyCode);
-    this.value = keyCodes[e.keyCode] || "unknown key";
-};
+// Add Opera class to <body> if Opera is the browser being used
+if (navigator.userAgent.includes("OPR")) {
+    document.body.classList.add("opera");
+}
+
+// Interactivity for key textboxes
+document.querySelectorAll(".keyfield").forEach(function(item) {
+    item.onkeydown = function (e) {
+        if ( !e.metaKey ) {
+            e.preventDefault();
+        }
+        this.setAttribute('data-keycode', e.keyCode);
+        this.value = keyCodes[e.keyCode] || "unknown key";
+    };
+});
 
 // Saves options to chrome.storage.sync
 document.querySelector("#settings-save").addEventListener("click", function() {
     chrome.storage.sync.set({
-        data: [document.querySelector("#first-key").value, document.querySelector("#second-key").dataset.keycode]
+        data: [document.querySelector("#primary-first").value, document.querySelector("#primary-second").dataset.keycode],
+        secondary: [document.querySelector("#secondary-first").value, document.querySelector("#secondary-second").dataset.keycode],
+        secondaryEnabled: document.querySelector("#enable-secondary").checked
     }, function() {
         // Update button text to let user know options were saved.
         var button = document.querySelector("#settings-save");
@@ -194,15 +203,33 @@ document.querySelector("#settings-save").addEventListener("click", function() {
     });
 });
 
+// Show or hide field for optional secondary shortcut
+document.querySelector("#enable-secondary").addEventListener("change", function() {
+    if (this.checked) {
+        document.querySelector(".secondary-field").style.display = "block";
+    } else {
+        document.querySelector(".secondary-field").style.display = "none";
+    }
+})
+
 // Function for 'Reset to default' button
 document.querySelector("#settings-reset").addEventListener("click", function() {
     chrome.storage.sync.set({
-        data: ["shiftKey", "53"]
+        data: ["shiftKey", "53"],
+        secondary: ["shiftKey", "54"],
+        secondaryEnabled: false
     }, function() {
-        // Change form element values
-        document.querySelector("#first-key").value = "shiftKey";
-        document.querySelector("#second-key").value = keyCodes[53];
-        document.querySelector("#second-key").setAttribute("data-keycode", "53");
+        // Form values for primary shortcut
+        document.querySelector("#primary-first").value = "shiftKey";
+        document.querySelector("#primary-second").value = keyCodes[53];
+        document.querySelector("#primary-second").setAttribute("data-keycode", "53");
+        // Value for secondary shortcut checkbox
+        document.querySelector("#enable-secondary").checked = false;
+        document.querySelector(".secondary-field").style.display = "none";
+        // Form values for secondary shortcut
+        document.querySelector("#secondary-first").value = "shiftKey";
+        document.querySelector("#secondary-second").value = keyCodes[53];
+        document.querySelector("#secondary-second").setAttribute("data-keycode", "54");
         // Update button text to let user know options were saved.
         var button = document.querySelector("#settings-reset");
         button.innerText = "Reset!"
@@ -215,10 +242,25 @@ document.querySelector("#settings-reset").addEventListener("click", function() {
 // Restore settings from chrome.storage
 document.addEventListener("DOMContentLoaded", function() {
     chrome.storage.sync.get({
-        data: ["shiftKey", "53"]
+        data: ["shiftKey", "53"],
+        secondary: ["shiftKey", "54"],
+        secondaryEnabled: false
     }, function(items) {
-        document.querySelector("#first-key").value = items.data[0];
-        document.querySelector("#second-key").value = keyCodes[items.data[1]];
-        document.querySelector("#second-key").setAttribute("data-keycode", items.data[1]);
+        console.log(items)
+        // Primary shortcut
+        document.querySelector("#primary-first").value = items.data[0];
+        document.querySelector("#primary-second").value = keyCodes[items.data[1]];
+        document.querySelector("#primary-second").setAttribute("data-keycode", items.data[1]);
+        // Secondary toggle
+        document.querySelector("#enable-secondary").checked = items.secondaryEnabled;
+        if (items.secondaryEnabled == true) {
+            document.querySelector(".secondary-field").style.display = "block";
+        } else {
+            document.querySelector(".secondary-field").style.display = "none";
+        }
+        // Secondary shortcut
+        document.querySelector("#secondary-first").value = items.secondary[0];
+        document.querySelector("#secondary-second").value = keyCodes[items.secondary[1]];
+        document.querySelector("#secondary-second").setAttribute("data-keycode", items.secondary[1]);
     });
 });
