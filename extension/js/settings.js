@@ -171,6 +171,11 @@ var keyCodes = {
     255 : "toggle touchpad"
 };
 
+// Add Opera class to <body> if Opera is the browser being used
+if (navigator.userAgent.includes("OPR")) {
+    document.body.classList.add("opera");
+}
+
 // Interactivity for key textboxes
 document.querySelectorAll(".keyfield").forEach(function(item) {
     item.onkeydown = function (e) {
@@ -241,13 +246,14 @@ document.addEventListener("DOMContentLoaded", function() {
         secondary: ["shiftKey", "54"],
         secondaryEnabled: false
     }, function(items) {
+        console.log(items)
         // Primary shortcut
         document.querySelector("#primary-first").value = items.data[0];
         document.querySelector("#primary-second").value = keyCodes[items.data[1]];
         document.querySelector("#primary-second").setAttribute("data-keycode", items.data[1]);
         // Secondary toggle
         document.querySelector("#enable-secondary").checked = items.secondaryEnabled;
-        if (items.secondaryEnabled) {
+        if (items.secondaryEnabled == true) {
             document.querySelector(".secondary-field").style.display = "block";
         } else {
             document.querySelector(".secondary-field").style.display = "none";
