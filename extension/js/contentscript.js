@@ -18,7 +18,7 @@ function deleteMail() {
     // Find out what element is currently in focus
     try {
         var focusedElement = document.activeElement;
-        if (focusedElement.getAttribute('contenteditable') || focusedElement.tagName == "INPUT" || focusedElement.tagName == "TEXTAREA") {
+        if (focusedElement.getAttribute('contenteditable') || focusedElement.tagName === "INPUT" || focusedElement.tagName === "TEXTAREA") {
             // Don't delete the email if the user is using an input element or an editable element (aka typing an email or doing a search)
             return
         }
@@ -26,7 +26,7 @@ function deleteMail() {
         console.log("Error finding focused element: " + err)
     }
     // Simulate click on dropdown menu
-    triggerMostButtons(document.querySelector('div[data-tooltip="More"]'));
+    triggerMostButtons(document.querySelector('div[data-message-id] div[data-tooltip="More"]'));
     // Simulate click on 'Delete this message' menu item
     var deleteMenuItem = document.querySelector('div[class="b7 J-M"] #tm');
     // This needs to be triggered twice for some reason
