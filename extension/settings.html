@@ -1,76 +1,83 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            input, select {
-                text-align: center !important;
-                width: 45%;
-            }
-            .plus {
-                font-size: 18px;
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-            button {
-                margin-right: 10px !important;
-            }
-            footer {
-                margin-top: 20px;
-                padding-top: 10px;
-                border-top: 1px solid #000;
-            }
-            /* Full-tab styles for Opera  */
-            .opera main {
-                width: 450px;
-                margin: 10% auto 0 auto;
-                border: 1px solid #000;
-                border-radius: 5px;
-                padding: 20px;
-            }
-            .opera footer {
-                width: 490px;
-                margin: 10px auto 0 auto;
-                padding-top: none;
-                border-top: none;
-            }
-            /* End styles for full tab */
-        </style>
-    </head>
-    <body>
-        <main>
-            <p><b>Primary shortcut used for deleting email:</b></p>
-            <p>
-                <select id="primary-first">
+<html style="min-width: 550px">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Main shortcut -->
+        <div class="row">
+            <div class="col mt-3">
+                <select class="form-select" id="primary-first">
                     <option value="noKey">No modifier key</option>
                     <option value="ctrlKey">Control Key</option>
                     <option value="shiftKey">Shift Key</option>
                     <option value="altKey">Alt Key</option>
                     <option value="metaKey">⌘ Command Key / Windows Key</option>
                 </select>
-                <span class="plus">+</span>
-                <input type="text" id="primary-second" class="keyfield" placeholder="Click here and press a key" spellcheck="false">
-            </p>
-            <p><input type="checkbox" name="enable-secondary" id="enable-secondary"> <label for="enable-secondary">Enable secondary shortcut</label></p>
-            <p class="secondary-field">
-                <select id="secondary-first">
+            </div>
+            <div class="col-1 text-center mt-3">
+                <div class="col-form-label">+</div>
+            </div>
+            <div class="col mt-3">
+                <input type="text" id="primary-second" class="form-control keyfield text-center" placeholder="Click here and press a key" spellcheck="false">
+            </div>
+        </div>
+        <!-- Second shortcut -->
+        <div class="row">
+            <div class="col mt-3">
+                <input class="form-check-input" type="checkbox" value="" id="enable-secondary">
+                <label class="form-check-label" for="enable-secondary">
+                    Enable secondary shortcut
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-3">
+                <select class="form-select" id="secondary-first">
                     <option value="noKey">No modifier key</option>
                     <option value="ctrlKey">Control Key</option>
                     <option value="shiftKey">Shift Key</option>
                     <option value="altKey">Alt Key</option>
                     <option value="metaKey">⌘ Command Key / Windows Key</option>
                 </select>
-                <span class="plus">+</span>
-                <input type="text" id="secondary-second" class="keyfield" placeholder="Click here and press a key" spellcheck="false">
-            </p>
-            <p><b>Note:</b> Don't use a <a href="https://support.google.com/mail/answer/6594" target="_blank">keyboard shortcut already taken by Gmail</a> or your operating system. You must refresh Gmail (or open a new tab) for settings to apply.</p>
-            <p><button id="settings-save">Save</button><button id="settings-reset">Reset to default</button></p>
-        </main>
-        <footer>
-            <div>Delete Key for Gmail™ is open-source under the GPLv3 license. You can find the source code <a href="https://github.com/android-police/delete-single-email-extension" target="_blank">here</a>.</div>
-        </footer>
-        
-        <script src="js/settings.js"></script>
-    </body>
+            </div>
+            <div class="col-1 text-center mt-3">
+                <div class="col-form-label">+</div>
+            </div>
+            <div class="col mt-3">
+                <input type="text" id="secondary-second" class="form-control keyfield text-center" placeholder="Click here and press a key" spellcheck="false">
+            </div>
+        </div>
+        <!-- Shortcut reminder -->
+        <div class="alert alert-warning mt-3 mb-0">
+            <b>Note:</b> Don't use a <a href="https://support.google.com/mail/answer/6594" target="_blank">keyboard shortcut already taken by Gmail</a> or your operating system. You must refresh Gmail (or open a new tab) for settings to apply.
+        </div>
+        <!-- Buttons -->
+        <div class="row">
+            <div class="col-6 mt-3">
+                <button type="button" id="settings-save" class="btn btn-primary w-100">Save</button>
+            </div>
+            <div class="col-6 mt-3">
+                <button type="button" id="settings-reset" class="btn btn-secondary w-100">Reset to default</button>
+            </div>
+        </div>
+        <!-- Credits -->
+        <div class="card mt-3 mb-3">
+            <div class="card-body">
+                Delete Key for Gmail™ is open-source under the General Public License v3. You can find the source code <a href="https://github.com/android-police/delete-single-email-extension" target="_blank">on GitHub</a>.
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/settings.js"></script>
+
+</body>
+
 </html>

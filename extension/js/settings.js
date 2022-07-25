@@ -171,11 +171,6 @@ var keyCodes = {
     255 : "toggle touchpad"
 };
 
-// Add Opera class to <body> if Opera is the browser being used
-if (navigator.userAgent.includes("OPR")) {
-    document.body.classList.add("opera");
-}
-
 // Interactivity for key textboxes
 document.querySelectorAll(".keyfield").forEach(function(item) {
     item.onkeydown = function (e) {
@@ -206,9 +201,11 @@ document.querySelector("#settings-save").addEventListener("click", function() {
 // Show or hide field for optional secondary shortcut
 document.querySelector("#enable-secondary").addEventListener("change", function() {
     if (this.checked) {
-        document.querySelector(".secondary-field").style.display = "block";
+        document.querySelector("#secondary-first").disabled = false
+        document.querySelector("#secondary-second").disabled = false
     } else {
-        document.querySelector(".secondary-field").style.display = "none";
+        document.querySelector("#secondary-first").disabled = true
+        document.querySelector("#secondary-second").disabled = true
     }
 })
 
@@ -225,7 +222,8 @@ document.querySelector("#settings-reset").addEventListener("click", function() {
         document.querySelector("#primary-second").setAttribute("data-keycode", "53");
         // Value for secondary shortcut checkbox
         document.querySelector("#enable-secondary").checked = false;
-        document.querySelector(".secondary-field").style.display = "none";
+        document.querySelector("#secondary-first").disabled = true
+        document.querySelector("#secondary-second").disabled = true
         // Form values for secondary shortcut
         document.querySelector("#secondary-first").value = "shiftKey";
         document.querySelector("#secondary-second").value = keyCodes[53];
@@ -253,10 +251,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector("#primary-second").setAttribute("data-keycode", items.data[1]);
         // Secondary toggle
         document.querySelector("#enable-secondary").checked = items.secondaryEnabled;
-        if (items.secondaryEnabled == true) {
-            document.querySelector(".secondary-field").style.display = "block";
-        } else {
-            document.querySelector(".secondary-field").style.display = "none";
+        if (items.secondaryEnabled == false) {
+            document.querySelector("#secondary-first").disabled = true
+            document.querySelector("#secondary-second").disabled = true
         }
         // Secondary shortcut
         document.querySelector("#secondary-first").value = items.secondary[0];
