@@ -1,3 +1,9 @@
+__v1.5:__
+
+* Shortcuts no longer conflict with Gmail's own keyboard shortcuts.
+* Updated to Manifest V3
+* Settings panel now uses Bootstrap (mostly because Manifest V3 removed chrome_style)
+
 __v1.4:__
 
 * Fixed bugs related to the latest Gmail code changes.
