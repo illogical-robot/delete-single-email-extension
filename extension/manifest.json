@@ -3,7 +3,7 @@
 	"name": "Delete Key for Gmail™",
 	"version": "1.5",
 	"author": "Illogical Robot LLC",
-	"homepage_url": "https://github.com/android-police/delete-single-email-extension",
+	"homepage_url": "https://github.com/illogical-robot/delete-single-email-extension",
 	"description": "Delete a single email in Gmail™ with a customizable user shortcut (default is Shift + 5).",
 	"permissions": [
 		"storage"
