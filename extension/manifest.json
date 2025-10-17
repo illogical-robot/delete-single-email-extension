@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Delete Key for Gmail™",
-	"version": "1.5",
+	"version": "1.5.1",
 	"author": "Illogical Robot LLC",
 	"homepage_url": "https://github.com/illogical-robot/delete-single-email-extension",
 	"description": "Delete a single email in Gmail™ with a customizable user shortcut (default is Shift + 5).",

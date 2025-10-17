@@ -17,6 +17,13 @@ function triggerMouseEvent(node, eventType) {
     node.dispatchEvent(clickEvent);
 }
 
+function closeMenu(moreButton) {
+    // Click the More button again to close the menu
+    if (moreButton) {
+        triggerMostButtons(moreButton);
+    }
+}
+
 // Function for deleting the message
 function deleteMail() {
     // Find out what element is currently in focus
@@ -29,13 +36,36 @@ function deleteMail() {
     } catch (err) {
         console.log("Error finding focused element: " + err)
     }
-    // Simulate click on dropdown menu
-    triggerMostButtons(document.querySelector('div[data-message-id] div[data-tooltip="More"]'));
-    // Simulate click on 'Delete this message' menu item
-    var deleteMenuItem = document.querySelector('div[class="b7 J-M"] #tm');
+    
+    // Simulate click on dropdown menu - try new UI first, then fall back to old UI
+    var moreButton = document.querySelector('button[aria-label="More message options"]');
+    if (!moreButton) {
+        moreButton = document.querySelector('div[data-message-id] div[data-tooltip="More"]');
+    }
+    
+    if (!moreButton) {
+        console.log("Delete failed: Could not find 'More' button. Is an email currently open?");
+        return;
+    }
+    triggerMostButtons(moreButton);
+    
+    // Simulate click on 'Delete this message' menu item - try new UI first, then fall back to old UI
+    var deleteMenuItem = document.querySelector('li[data-action-type="11"]');
+    if (!deleteMenuItem) {
+        deleteMenuItem = document.querySelector('div[class="b7 J-M"] #tm');
+    }
+    
+    if (!deleteMenuItem) {
+        console.log("Delete failed: Could not find delete menu item. Closing menu.");
+        closeMenu(moreButton);
+        return;
+    }
+    
+    console.log("Clicking delete single email button.");
     // This needs to be triggered twice for some reason
     triggerMostButtons(deleteMenuItem);
     triggerMostButtons(deleteMenuItem);
+    
     // Restore focus to original element
     try {
         focusedElement.focus();

@@ -1,3 +1,6 @@
+__v1.5.1:__
+* Fixed bugs related to the latest Gmail code changes.
+
 __v1.5:__
 
 * Shortcuts no longer conflict with Gmail's own keyboard shortcuts.
